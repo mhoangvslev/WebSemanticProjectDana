@@ -1,0 +1,30 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+  ?ID a rdf:ID;
+    dbo:city ?City;
+    wdt:P276 ?Coord;
+    wd:Q19829510 ?Pollutant;
+    rdfs:label ?Source_name;
+    wd:Q47574 ?Unit;
+    wd:Q12916 ?Value;
+    wdt:P5017 ?Last_updated;
+    dbo:country ?Country;
+}
+FROM <file:any.csv;delimiter=;> 
+WHERE {
+    BIND(URI(CONCAT("met ton lien ici", ?id)) AS ?ID)
+	BIND(xsd:string(?city) AS ?City)
+	BIND(xsd:string(?coord) AS ?Coord)
+	BIND(xsd:string(?pollutant) AS ?Pollutant)
+	BIND(xsd:string(?source_name) AS ?Source_name)
+	BIND(xsd:decimal(?value) AS ?Value)
+	BIND(xsd:string(?last_updated) AS ?Last_updated)
+	BIND(xsd:string(?country) AS ?Country)
+}

@@ -1,0 +1,23 @@
+PREFIX ex: <http://ex.org/a#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+CONSTRUCT {
+  ?URI a dbo:Organisation;
+    ex:permalink ?a_permalink;
+    ex:name ?company;
+    ex:employees ?numEmployees;
+    ex:category ?category;
+    ex:city ?city;
+    ex:state ?state;
+    ex:fundationDate ?fundedDate;
+    ex:raisedAmt ?amount;
+    ex:raisedCurrency ?raisedCurrency;
+    ex:round ?round;
+} 
+FROM <file:TechCrunchcontinentalUSA.csv> 
+WHERE {
+  BIND (URI(CONCAT('http://ex.org/companies/', ?a_permalink)) AS ?URI)
+  BIND (xsd:integer(?numEmps) AS ?numEmployees)
+  BIND (xsd:decimal(?raisedAmt) AS ?amount)
+}

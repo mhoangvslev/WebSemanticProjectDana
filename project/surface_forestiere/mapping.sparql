@@ -1,0 +1,36 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX sffmv: <https://mmisw.org/ont/~mhoangvslev/>
+
+CONSTRUCT {
+  ?CountryURI a skos:Concept;
+    rdfs:label ?country_name;
+    dbo:isoCodeRegion ?CountryCodeRegion; 
+    sffmv:IncomeGroup ?CountryIncomeGroup;
+    dbo:year ?Year;
+    xsd:decimal ?SurfaceForestiere;
+} 
+FROM <file:any.csv;encoding=utf-8;delimiter=%3B> 
+WHERE {
+    # Les groupes de revenu 
+    VALUES( ?income_group ?class ){
+      ("Revenu élevé" xsd:string)
+      ("Revenu intermédiaire, tranche supérieure" xsd:string)
+      ("Faible revenu" xsd:string)
+      ("Agrégats" xsd:string)
+    }
+
+    # Classify
+    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", SHA1(CONCAT(?country_code, ?year)))) as ?CountryURI)
+    BIND( STRDT(?country_code, dbo:isoCodeRegion) as ?CountryCodeRegion)
+    BIND( STRDT(?surface_forestiere, xsd:decimal) as ?SurfaceForestiere)
+    
+    #BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", ?year)) as ?YearURI)
+    BIND( STRDT(?year, dbo:year) as ?Year)
+
+    # Localising
+    BIND( STRLANG(?country_name, "fr-FR") as ?CountryName)
+    BIND( STRLANG(?income_group, "fr-FR") as ?CountryIncomeGroup)
+}
