@@ -2,15 +2,15 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX sffmv: <https://mmisw.org/ont/~mhoangvslev/>
+PREFIX voc: <https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/>
 
 CONSTRUCT {
-  ?CountryURI a skos:Concept;
-    rdfs:label ?country_name;
-    dbo:isoCodeRegion ?CountryCodeRegion; 
-    sffmv:IncomeGroup ?CountryIncomeGroup;
-    dbo:year ?Year;
-    xsd:decimal ?SurfaceForestiere;
+  ?CountryURI a voc:Measurement;
+    voc:CountryName ?country_name;
+    voc:CountryCodeRegion ?CountryCodeRegion; 
+    voc:CountryIncomeGroup ?CountryIncomeGroup;
+    voc:Year ?Year;
+    voc:SurfaceForestiere ?SurfaceForestiere;
 } 
 FROM <file:any.csv;encoding=utf-8;delimiter=%3B> 
 WHERE {
