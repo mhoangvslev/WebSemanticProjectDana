@@ -20,7 +20,7 @@ CONSTRUCT {
 FROM <file:any.csv;encoding=utf-8;delimiter=%3B> 
 WHERE {
     # Classify
-    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", SHA1(CONCAT(?surface_forestiere, ?year)))) as ?MeasurementURI)
+    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", CONCAT(?country_code, "_", ?year))) as ?MeasurementURI)
     BIND( STRDT(?surface_forestiere, voc:SurfaceForestiere) as ?SurfaceForestiere)
     BIND( STRDT(?year, voc:Year) as ?Year)
 

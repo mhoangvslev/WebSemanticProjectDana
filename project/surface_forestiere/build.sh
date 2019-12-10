@@ -1,5 +1,4 @@
-rm -rf *.rdf
-rm -rf *.ttl
+rm -rf output
 mkdir -p output
 
 # Dataset
