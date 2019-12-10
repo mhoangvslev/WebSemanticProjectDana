@@ -5,31 +5,30 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX voc: <https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/>
 
 CONSTRUCT {
-  ?CountryURI a voc:Measurement;
-    voc:CountryName ?country_name;
-    voc:CountryCodeRegion ?CountryCodeRegion; 
-    voc:CountryIncomeGroup ?CountryIncomeGroup;
-    voc:Year ?Year;
-    voc:SurfaceForestiere ?SurfaceForestiere;
+
+  ?CountryCodeURI a voc:Country;
+    voc:hasName ?CountryName;
+    voc:hasCountryCode ?CountryCodeRegion;
+    voc:ofIncomeGroup ?CountryIncomeGroup.
+
+  ?MeasurementURI a voc:Measurement;
+    voc:ofYear ?Year;
+    voc:withSurface ?SurfaceForestiere.
+
+  ?CountryURI voc:hasMeasurement ?MeasurementURI
 } 
 FROM <file:any.csv;encoding=utf-8;delimiter=%3B> 
 WHERE {
-    # Les groupes de revenu 
-    VALUES( ?income_group ?class ){
-      ("Revenu élevé" xsd:string)
-      ("Revenu intermédiaire, tranche supérieure" xsd:string)
-      ("Faible revenu" xsd:string)
-      ("Agrégats" xsd:string)
-    }
-
     # Classify
-    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", SHA1(CONCAT(?country_code, ?year)))) as ?CountryURI)
-    BIND( STRDT(?country_code, dbo:isoCodeRegion) as ?CountryCodeRegion)
-    BIND( STRDT(?surface_forestiere, xsd:decimal) as ?SurfaceForestiere)
-    
-    BIND( STRDT(?year, dbo:year) as ?Year)
+    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", SHA1(CONCAT(?surface_forestiere, ?year)))) as ?MeasurementURI)
+    BIND( STRDT(?surface_forestiere, voc:SurfaceForestiere) as ?SurfaceForestiere)
+    BIND( STRDT(?year, voc:Year) as ?Year)
 
     # Localising
-    BIND( STRLANG(?country_name, "en-EN") as ?CountryName)
-    BIND( STRLANG(?income_group, "fr-FR") as ?CountryIncomeGroup)
+    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", ?country_code)) as ?CountryCodeURI)
+    BIND( STRDT(?country_code, voc:CountryCodeRegion) as ?CountryCodeRegion)
+    BIND( STRDT(?country_name, voc:CountryName) as ?CountryName)
+
+    BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", SHA1(?income_group ))) as ?CountryIncomeURI)
+    BIND( STRDT(?income_group, voc:CountryIncomeGroup) as ?CountryIncomeGroup)
 }

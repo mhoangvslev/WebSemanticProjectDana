@@ -46,10 +46,6 @@ CONSTRUCT {
         rdfs:range voc:CountryIncomeGroup;
         rdfs:domain voc:Country.
     
-    _:x4 a owl:Restriction;
-        owl:onProperty voc:ofIncomeGroup;
-        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
-
     voc:hasMeasurement a owl:ObjectProperty;
         rdfs:range voc:Measurement;
         rdfs:domain voc:Country.
@@ -69,6 +65,10 @@ CONSTRUCT {
 
     _:x3 a owl:Restriction;
         owl:onProperty voc:hasCountryCode;
+        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    _:x4 a owl:Restriction;
+        owl:onProperty voc:ofIncomeGroup;
         owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
 
     _:x5 a owl:Restriction;

@@ -50,28 +50,28 @@ voc:ofIncomeGroup  rdf:type  owl:ObjectProperty ;
         rdfs:range   voc:CountryIncomeGroup ;
         rdfs:domain  voc:Country .
 
-_:b0    rdf:type                  owl:Restriction ;
-        owl:onProperty            voc:ofIncomeGroup ;
-        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
-
 voc:hasMeasurement  rdf:type  owl:ObjectProperty ;
         rdfs:range   voc:Measurement ;
         rdfs:domain  voc:Country .
 
-_:b1    rdf:type                  owl:Restriction ;
+_:b0    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:ofYear ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b2    rdf:type                  owl:Restriction ;
+_:b1    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:withSurface ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b3    rdf:type                     owl:Restriction ;
+_:b2    rdf:type                     owl:Restriction ;
         owl:onProperty               voc:hasName ;
         owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b4    rdf:type                  owl:Restriction ;
+_:b3    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:hasCountryCode ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b4    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofIncomeGroup ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
 _:b5    rdf:type                     owl:Restriction ;
@@ -124,28 +124,28 @@ voc:ofIncomeGroup  rdf:type  owl:ObjectProperty ;
         rdfs:range   voc:CountryIncomeGroup ;
         rdfs:domain  voc:Country .
 
-_:b6    rdf:type                  owl:Restriction ;
-        owl:onProperty            voc:ofIncomeGroup ;
-        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
-
 voc:hasMeasurement  rdf:type  owl:ObjectProperty ;
         rdfs:range   voc:Measurement ;
         rdfs:domain  voc:Country .
 
-_:b7    rdf:type                  owl:Restriction ;
+_:b6    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:ofYear ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b8    rdf:type                  owl:Restriction ;
+_:b7    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:withSurface ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b9    rdf:type                     owl:Restriction ;
+_:b8    rdf:type                     owl:Restriction ;
         owl:onProperty               voc:hasName ;
         owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
-_:b10   rdf:type                  owl:Restriction ;
+_:b9    rdf:type                  owl:Restriction ;
         owl:onProperty            voc:hasCountryCode ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b10   rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofIncomeGroup ;
         owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
 
 _:b11   rdf:type                     owl:Restriction ;
