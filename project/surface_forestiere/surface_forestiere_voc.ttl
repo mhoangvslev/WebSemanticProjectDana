@@ -1,0 +1,154 @@
+@prefix dbo:  <http://dbpedia.org/ontology/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc:  <https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/> .
+
+voc:Measurement  rdf:type  owl:Class .
+
+voc:Country  rdf:type  owl:Class .
+
+voc:Year  rdf:type  owl:Class ;
+        owl:sameAs  dbo:Year .
+
+voc:SurfaceForestiere
+        rdf:type    owl:Class ;
+        owl:sameAs  xsd:decimal .
+
+voc:CountryIncomeGroup
+        rdf:type   owl:Class ;
+        owl:oneOf  "Revenu élevé"^^xsd:stirng ;
+        owl:oneOf  "Revenu intermédiaire, tranche supérieure" ;
+        owl:oneOf  "Faible revenu" ;
+        owl:oneOf  "Agrégats" .
+
+voc:CountryName  rdf:type  owl:Class ;
+        owl:sameAs  dbo:Country .
+
+voc:CountryCodeRegion
+        rdf:type    owl:Class ;
+        owl:sameAs  dbo:isoCodeRegion .
+
+voc:ofYear  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:Year ;
+        rdfs:domain  voc:Measurement .
+
+voc:withSurface  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:SurfaceForestiere ;
+        rdfs:domain  voc:Measurement .
+
+voc:hasName  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryName ;
+        rdfs:domain  voc:Country .
+
+voc:hasCountryCode  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryCodeRegion ;
+        rdfs:domain  voc:Country .
+
+voc:ofIncomeGroup  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryIncomeGroup ;
+        rdfs:domain  voc:Country .
+
+_:b0    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofIncomeGroup ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+voc:hasMeasurement  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:Measurement ;
+        rdfs:domain  voc:Country .
+
+_:b1    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofYear ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b2    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:withSurface ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b3    rdf:type                     owl:Restriction ;
+        owl:onProperty               voc:hasName ;
+        owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b4    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:hasCountryCode ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b5    rdf:type                     owl:Restriction ;
+        owl:onProperty               voc:hasMeasurement ;
+        owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
+        owl:maxQualifiedCardinality  "16"^^xsd:nonNegativeInteger .
+
+voc:Measurement  rdf:type  owl:Class .
+
+voc:Country  rdf:type  owl:Class .
+
+voc:Year  rdf:type  owl:Class ;
+        owl:sameAs  dbo:Year .
+
+voc:SurfaceForestiere
+        rdf:type    owl:Class ;
+        owl:sameAs  xsd:decimal .
+
+voc:CountryIncomeGroup
+        rdf:type   owl:Class ;
+        owl:oneOf  "Revenu élevé"^^xsd:stirng ;
+        owl:oneOf  "Revenu intermédiaire, tranche supérieure" ;
+        owl:oneOf  "Faible revenu" ;
+        owl:oneOf  "Agrégats" .
+
+voc:CountryName  rdf:type  owl:Class ;
+        owl:sameAs  dbo:Country .
+
+voc:CountryCodeRegion
+        rdf:type    owl:Class ;
+        owl:sameAs  dbo:isoCodeRegion .
+
+voc:ofYear  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:Year ;
+        rdfs:domain  voc:Measurement .
+
+voc:withSurface  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:SurfaceForestiere ;
+        rdfs:domain  voc:Measurement .
+
+voc:hasName  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryName ;
+        rdfs:domain  voc:Country .
+
+voc:hasCountryCode  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryCodeRegion ;
+        rdfs:domain  voc:Country .
+
+voc:ofIncomeGroup  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:CountryIncomeGroup ;
+        rdfs:domain  voc:Country .
+
+_:b6    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofIncomeGroup ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+voc:hasMeasurement  rdf:type  owl:ObjectProperty ;
+        rdfs:range   voc:Measurement ;
+        rdfs:domain  voc:Country .
+
+_:b7    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:ofYear ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b8    rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:withSurface ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b9    rdf:type                     owl:Restriction ;
+        owl:onProperty               voc:hasName ;
+        owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b10   rdf:type                  owl:Restriction ;
+        owl:onProperty            voc:hasCountryCode ;
+        owl:QualifiedCardinality  "1"^^xsd:nonNegativeInteger .
+
+_:b11   rdf:type                     owl:Restriction ;
+        owl:onProperty               voc:hasMeasurement ;
+        owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
+        owl:maxQualifiedCardinality  "16"^^xsd:nonNegativeInteger .

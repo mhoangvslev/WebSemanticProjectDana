@@ -27,10 +27,9 @@ WHERE {
     BIND( STRDT(?country_code, dbo:isoCodeRegion) as ?CountryCodeRegion)
     BIND( STRDT(?surface_forestiere, xsd:decimal) as ?SurfaceForestiere)
     
-    #BIND( URI(CONCAT("https://mmisw.org/ont/~mhoangvslev/surface_forestiere/", ?year)) as ?YearURI)
     BIND( STRDT(?year, dbo:year) as ?Year)
 
     # Localising
-    BIND( STRLANG(?country_name, "fr-FR") as ?CountryName)
+    BIND( STRLANG(?country_name, "en-EN") as ?CountryName)
     BIND( STRLANG(?income_group, "fr-FR") as ?CountryIncomeGroup)
 }

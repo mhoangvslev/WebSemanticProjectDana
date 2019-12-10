@@ -1,0 +1,81 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX voc: <https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT {
+    voc:Measurement a owl:Class.
+
+    voc:Country a owl:Class.
+
+    voc:Year a owl:Class;
+        owl:sameAs dbo:Year.
+
+    voc:SurfaceForestiere a owl:Class;
+        owl:sameAs xsd:decimal.
+
+    voc:CountryIncomeGroup a owl:Class;
+        owl:oneOf "Revenu élevé"^^xsd:stirng, "Revenu intermédiaire, tranche supérieure"^^xsd:string, "Faible revenu"^^xsd:string, "Agrégats"^^xsd:string.
+
+    voc:CountryName a owl:Class;
+        owl:sameAs dbo:Country.
+
+    voc:CountryCodeRegion a owl:Class;
+        owl:sameAs dbo:isoCodeRegion.
+
+    # Properties & Restrictions
+    voc:ofYear a owl:ObjectProperty;
+        rdfs:range voc:Year;
+        rdfs:domain voc:Measurement.
+
+    voc:withSurface a owl:ObjectProperty;
+        rdfs:range voc:SurfaceForestiere;
+        rdfs:domain voc:Measurement.
+
+    voc:hasName a owl:ObjectProperty;
+        rdfs:range voc:CountryName;
+        rdfs:domain voc:Country.
+    
+    voc:hasCountryCode a owl:ObjectProperty;
+        rdfs:range voc:CountryCodeRegion;
+        rdfs:domain voc:Country.
+
+    voc:ofIncomeGroup a owl:ObjectProperty;
+        rdfs:range voc:CountryIncomeGroup;
+        rdfs:domain voc:Country.
+    
+    _:x4 a owl:Restriction;
+        owl:onProperty voc:ofIncomeGroup;
+        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    voc:hasMeasurement a owl:ObjectProperty;
+        rdfs:range voc:Measurement;
+        rdfs:domain voc:Country.
+
+    # Restrictions
+    _:x0 a owl:Restriction;
+        owl:onProperty voc:ofYear;
+        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    _:x1 a owl:Restriction;
+        owl:onProperty voc:withSurface;
+        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    _:x2 a owl:Restriction;
+        owl:onProperty voc:hasName;
+        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    _:x3 a owl:Restriction;
+        owl:onProperty voc:hasCountryCode;
+        owl:QualifiedCardinality "1"^^xsd:nonNegativeInteger.
+
+    _:x5 a owl:Restriction;
+        owl:onProperty voc:hasMeasurement;
+        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+        owl:maxQualifiedCardinality "16"^^xsd:nonNegativeInteger.
+
+} 
+FROM voc:
+WHERE {}
