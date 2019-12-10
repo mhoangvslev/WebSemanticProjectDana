@@ -1,12 +1,14 @@
+rm -rf *.rdf
+rm -rf *.ttl
+mkdir -p output
+
 # Dataset
-sh ../../bin/tarql --delimiter "," --ntriples mapping.sparql surface_forestiere.csv > surface_forestiere.rdf
-sh ../../bin/tarql --delimiter "," mapping.sparql surface_forestiere.csv > surface_forestiere.ttl
+sh ../../bin/tarql --delimiter "," mapping_no_owl.sparql surface_forestiere.csv > output/surface_forestiere.ttl
+sh ../../bin/tarql --delimiter "," mapping_owl.sparql surface_forestiere.csv > output/surface_forestiere_owl.ttl
 
 
 # Vocabulaire
-sh ../../bin/tarql --delimiter "," --ntriples vocabulary.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > surface_forestiere_voc.rdf
-sh ../../bin/tarql --delimiter "," vocabulary.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > surface_forestiere_voc.ttl
+sh ../../bin/tarql --delimiter "," vocabulary.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > output/surface_forestiere_voc.ttl
 
 # VOID vocabulaire
-sh ../../bin/tarql --delimiter "," --ntriples void_description.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > void_description.rdf
-sh ../../bin/tarql --delimiter "," void_description.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > void_description.ttl
+sh ../../bin/tarql --delimiter "," void_description.sparql https://mmisw.org/ont/~mhoangvslev/SurfaceForestiereVoc/ > output/void_description.ttl
